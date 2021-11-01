@@ -17,19 +17,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let city of weatherItems$ | async">
-        <b>{{ city.city }}</b>
-      </li>
-    </ul>
-    <form #myform="ngForm" (ngSubmit)="addCity(myform)">
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" class="form-control" ngModel name="city" id="city" />
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
   </div>
 
   <br />

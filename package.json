@@ -1,5 +1,5 @@
 {
-  "name": "rxjs-angular-weather",
+  "name": "ngrx-weather-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -23,6 +23,7 @@
     "@angular/router": "~12.2.11",
     "@ngrx/effects": "^12.5.1",
     "@ngrx/store": "^12.5.1",
+    "@ngrx/store-devtools": "^12.5.1",
     "ngrx": "0.0.1-security",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",

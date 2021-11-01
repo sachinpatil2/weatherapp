@@ -16,6 +16,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { StoreModule } from "@ngrx/store";
 import { weatherReducer } from "./store/reducer/weather.reducer";
 import { EffectsModule } from "@ngrx/effects";
+import { WeatherEffects } from "./store/effects/weather.effects";
+import { WeatherService } from "./weather.service";
 
 const routes: Routes = [
   {
@@ -35,9 +37,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot({
-      weather: weatherReducer,
-    }),
     MatCardModule,
     MatToolbarModule,
     MatFormFieldModule,
@@ -46,9 +45,12 @@ const routes: Routes = [
     MatProgressBarModule,
     HttpClientModule,
     MatButtonModule,
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({
+      weather: weatherReducer,
+    }),
+    EffectsModule.forRoot([WeatherEffects]),
   ],
-  providers: [],
+  providers: [WeatherService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

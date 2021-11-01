@@ -6,7 +6,8 @@ import { takeUntil, map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { Weatheritem } from "./store/models/weather.model";
 import { State } from "./store/models/state.model";
-import { AddItemAction } from "./store/actions/weather.action";
+import { FetchWeather } from "./store";
+// import { AddItemAction } from "./store/actions/weather.action";
 
 @Component({
   selector: "app-root",
@@ -42,17 +43,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
   cities$: Observable<string>;
 
-  weatherItems$: Observable<Array<Weatheritem>>;
+  weatherItem$: Observable<Weatheritem>;
   constructor(private router: Router, private store: Store<State>) {}
 
   ngOnInit() {
-    this.weatherItems$ = this.store.select((store) => store.weather);
+    this.weatherItem$ = this.store.select((store) => store.weather);
 
     this.cityControl = new FormControl("");
     this.cityControl.valueChanges
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((value) => {
         this.router.navigate([value]);
+        this.store.dispatch(new FetchWeather(value));
       });
 
     this.countryControl = new FormControl("");
@@ -60,11 +62,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.cities$ = this.countryControl.valueChanges.pipe(
       map((country) => country.cities)
     );
-  }
-
-  addCity(form: NgForm) {
-    this.store.dispatch(new AddItemAction(form.value));
-    form.reset();
   }
 
   ngOnDestroy() {
