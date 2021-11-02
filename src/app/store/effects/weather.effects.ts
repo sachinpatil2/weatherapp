@@ -3,12 +3,12 @@ import { Injectable } from "@angular/core";
 import { createEffect, Actions, ofType } from "@ngrx/effects";
 //import our actions
 import * as WeatherActions from "../actions/weather.action";
-import { Action } from "@ngrx/store";
+
 import { switchMap, map, catchError } from "rxjs/operators";
 
 //import the service
 import { WeatherService } from "../../weather.service";
-import { Observable, of } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable()
 export class WeatherEffects {

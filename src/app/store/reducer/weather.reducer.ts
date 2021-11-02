@@ -1,5 +1,3 @@
-// import the interface
-import { Weatheritem } from "../models/weather.model";
 import * as weatherActions from "../actions/weather.action";
 import { State } from "../models/state.model";
 //create a dummy initial state
